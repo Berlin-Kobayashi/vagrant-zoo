@@ -1,0 +1,4 @@
+/.idea/
+
+# ignore all .vagrant directories
+.vagrant/
