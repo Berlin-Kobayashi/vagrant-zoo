@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# enable colorful terminal
+sed -i 's/^.*force_color_prompt=yes.*/force_color_prompt=yes/' .bashrc
+source .bashrc
+
 # install apache2
 apt-get update
 apt-get install -y apache2
@@ -23,6 +27,9 @@ curl -sS https://getcomposer.org/installer | sudo -H php -- --install-dir=/usr/l
 # install node.js 5
 curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+# install grunt-cli globally
+sudo npm install -g grunt-cli
 
 # install MySQL
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password admin'
