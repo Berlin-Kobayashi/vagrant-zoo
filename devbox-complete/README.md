@@ -14,3 +14,4 @@ This is a DevBox which comes complete with:
  * composer
  * node.js 5
  * Grunt CLI
+ * Symfony installer
