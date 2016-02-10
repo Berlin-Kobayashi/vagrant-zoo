@@ -1,5 +1,5 @@
 # devbox-complete
-This is a DevBox which comes complete complete with:
+This is a DevBox which comes complete with:
  * **Ubuntu 14.04 LTS**
  * network configuration
  * a colorful terminal
