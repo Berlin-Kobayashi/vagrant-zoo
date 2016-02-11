@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 # enable colorful terminal
-sed -i 's/^.*force_color_prompt=yes.*/force_color_prompt=yes/' .bashrc
-source .bashrc
+sed -i 's/^.*force_color_prompt=yes.*/force_color_prompt=yes/' /home/vagrant/.bashrc
+source /home/vagrant/.bashrc
 
 # install apache2
 sudo apt-get update
 sudo apt-get install -y apache2
+
+# link project root with web root
 if ! [ -L /var/www ]; then
   rm -rf /var/www/html
   ln -fs /vagrant /var/www/html
