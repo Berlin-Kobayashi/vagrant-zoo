@@ -5,6 +5,7 @@ This is a DevBox which comes complete with:
  * a colorful terminal
  * Apache 2
  * PHP 5.6
+ * PHPUnit
  * MySQL
  * MongoDB
  * Java 8

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# enable colorful terminal
+# This bootstrap was created by Module Juggler: https://github.com/DanShu93/module-juggler
+
+# install colorful terminal
 sed -i 's/^.*force_color_prompt=yes.*/force_color_prompt=yes/' /home/vagrant/.bashrc
 source /home/vagrant/.bashrc
 
@@ -8,17 +10,17 @@ source /home/vagrant/.bashrc
 sudo apt-get update
 sudo apt-get install -y apache2
 
-# link project root with web root
+# install web root link
 if ! [ -L /var/www ]; then
   rm -rf /var/www/html
   ln -fs /vagrant /var/www/html
 fi
 
-# enable apache2 rewrite module
+# install apache2 rewrite module
 sudo a2enmod rewrite
 sudo service apache2 restart
 
-# install php 5.6
+# install PHP 5.6
 sudo add-apt-repository -y ppa:ondrej/php5-5.6
 sudo apt-get update
 sudo apt-get install -y python-software-properties
@@ -30,11 +32,11 @@ sudo apt-get install -y git
 # install common command line tools
 git clone https://github.com/DanShu93/common-command-line-tools.git /home/vagrant/common-command-line-tools
 
-# enable .htaccess
+# install .htaccess
 sudo php /home/vagrant/common-command-line-tools/apache2/htaccessEnabler.php
 sudo service apache2 restart
 
-# install composer
+# install Composer
 curl -sS https://getcomposer.org/installer | sudo -H php -- --install-dir=/usr/local/bin --filename=composer
 
 # install Symfony installer
@@ -45,7 +47,7 @@ sudo chmod a+x /usr/local/bin/symfony
 curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-# install grunt-cli globally
+# install grunt-cli
 sudo npm install -g grunt-cli
 
 # install MySQL
@@ -53,7 +55,7 @@ sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password admin'
 sudo apt-get -y install mysql-server
 
-# install MYSQL PHP extension
+# install MySQL PHP extension
 sudo apt-get install php5-mysql
 sudo service apache2 restart
 
@@ -64,7 +66,7 @@ echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" 
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 
-# open MongoDB port for everyone
+# install open MongoDB port for everyone
 sudo iptables -A INPUT -p tcp --dport 27017 -j ACCEPT
 sudo sed -i 's/^  bindIp: 127\.0\.0\.1$/#  bindIp: 127\.0\.0\.1/' /etc/mongod.conf
 sudo service mongod restart
@@ -83,7 +85,7 @@ mkdir goground
 echo 'export GOPATH=$HOME/goground' >> /home/vagrant/.bashrc
 source /home/vagrant/.bashrc
 
-# install Java 8 JDK
+# install Java 8
 sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
 echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
@@ -91,6 +93,12 @@ echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-se
 sudo apt-get install -y oracle-java8-installer
 sudo apt-get install -y oracle-java8-set-default
 
-#install Maven
+# install Maven
 apt-cache search maven
 sudo apt-get install -y maven
+
+# install PHPUnit
+sudo wget https://phar.phpunit.de/phpunit.phar
+sudo chmod +x phpunit.phar
+sudo mv phpunit.phar /usr/local/bin/phpunit
+
